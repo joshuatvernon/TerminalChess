@@ -105,7 +105,6 @@ class Player(object):
                     if a.get_position() == pos2:
                         return False
                 if p.valid_move(pos2, taking):
-                    p.
                     p.set_position(pos2)
                     return True
         return False
@@ -244,10 +243,15 @@ class Pawn(ChessPiece):
         else:
             raise InvalidChessPieceColour("Chess pieces can only be White or Black.")
     def valid_move(self, new_pos, taking=False):
-        if new_pos[1] <= self.position[1] or new_pos[1] > self.position[1] + 2 \
-        (new_pos[1] > self.position[1] + 1 and self.first_move == False) \
-        abs(cypher[new_pos[0]] - cypher[self.position[0]]) > 1 \
-        (abs(cypher[new_pos[0]] - cypher[self.position[0]]) == 1 and taking = False):
+        cypher = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
+        if (new_pos[1] <= self.position[1] and self.colour.lower() == "white") or \
+        (new_pos[1] >= self.position[1] and self.colour.lower() == "black") or \
+        new_pos[1] > self.position[1] + 2 or \
+        new_pos[1] < self.position[1] - 2 or \
+        (new_pos[1] < self.position[1] - 1 and self.first_move == False and self.colour.lower() == "black") or \
+        (new_pos[1] > self.position[1] + 1 and self.first_move == False and self.colour.lower() == "white") or \
+        abs(cypher[new_pos[0]] - cypher[self.position[0]]) > 1 or \
+        (abs(cypher[new_pos[0]] - cypher[self.position[0]]) == 1 and taking == False):
             return False
         self.first_move = False
         return True
