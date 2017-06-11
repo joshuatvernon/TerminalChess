@@ -1,2 +1,30 @@
 # TerminalChess
-An emulation of the ancient game Chess in the terminal using basic OOD concepts in Python3
+An emulation of the board game Chess in the terminal using basic OOD concepts in Python 3. __NOTE:__ This is a work in progress, however, is public as I welcome feedback of any kind as it has so far just been one nights fun.
+
+```
+                 Mitchell (Black)                
+                     ♙ ♙ ♖ ♘                     
+  -------------------------------------------------
+8 |     |     |  ♝  |  ♚  |  ♛  |  ♝  |  ♞  |  ♜  |
+  -------------------------------------------------
+7 |     |  ♟  |  ♟  |  ♟  |  ♟  |  ♟  |  ♟  |  ♟  |
+  -------------------------------------------------
+6 |     |     |     |     |     |     |     |     |
+  -------------------------------------------------
+5 |     |  ♗  |     |     |     |     |     |     |
+  -------------------------------------------------
+4 |     |     |     |  ♘  |  ♙  |     |  ♕  |     |
+  -------------------------------------------------
+3 |     |     |  ♟  |     |     |     |     |     |
+  -------------------------------------------------
+2 |     |     |  ♙  |  ♙  |     |  ♙  |  ♙  |  ♙  |
+  -------------------------------------------------
+1 |  ♜  |     |  ♗  |     |  ♔  |     |     |  ♖  |
+  -------------------------------------------------
+     A     B     C     D     E     F     G     H     
+                        ♞                        
+                 Joshua (White)                 
+
+Mitchell's turn (A1->B2):
+
+```

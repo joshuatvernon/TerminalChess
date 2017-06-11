@@ -95,17 +95,20 @@ class Player(object):
         for p in self.pieces.values():
             if p.get_position() == pos1:
                 taking = False
+
                 # check for pieces being taken
                 for o in self.opposition.get_pieces().values():
                     if o.get_position() == pos2:
                         taking = True
-                        o.set_state(False)
                 # check for clashing ally pieces
                 for a in self.pieces.values():
                     if a.get_position() == pos2:
                         return False
                 if p.valid_move(pos2, taking):
                     p.set_position(pos2)
+                    for o in self.opposition.get_pieces().values():
+                        if o.get_position() == pos2:
+                            o.set_state(False)
                     return True
         return False
     def set_opposition(self, opposition):
@@ -119,6 +122,7 @@ class Player(object):
 # - can't move through other pieces - except Knight
 # - pawns start with 2 space ability - DONE
 # - pawns can take pieces sideways - DONE
+# - Pawsn can't take pieces going forwards only
 # - castling with king and rooks
 # - can't move pieces if being checked unless it breaks the check
 # - king can't move into check
@@ -180,8 +184,9 @@ class Queen(ChessPiece):
         else:
             raise InvalidChessPieceColour("Chess pieces can only be White or Black.")
     def valid_move(self, new_pos, taking=False):
+        cypher = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
         if (abs(cypher[self.position[0]] - cypher[new_pos[0]]) == 0 or abs(self.position[1] - new_pos[1]) == 0) or \
-        (abs(cypher[self.position[0]] - cypher[new_pos[0]]) == abs(self.position[1] - new_pos[1]) == 0):
+        (abs(cypher[self.position[0]] - cypher[new_pos[0]]) == abs(self.position[1] - new_pos[1])):
             return True
         return False
 
@@ -251,7 +256,8 @@ class Pawn(ChessPiece):
         (new_pos[1] < self.position[1] - 1 and self.first_move == False and self.colour.lower() == "black") or \
         (new_pos[1] > self.position[1] + 1 and self.first_move == False and self.colour.lower() == "white") or \
         abs(cypher[new_pos[0]] - cypher[self.position[0]]) > 1 or \
-        (abs(cypher[new_pos[0]] - cypher[self.position[0]]) == 1 and taking == False):
+        (abs(cypher[new_pos[0]] - cypher[self.position[0]]) == 1 and taking == False) or \
+        (abs(cypher[new_pos[0]] - cypher[self.position[0]]) == 0 and taking == True):
             return False
         self.first_move = False
         return True
