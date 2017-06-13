@@ -1,6 +1,6 @@
 # Terminal Chess
 
-![python](python.svg)
+![python](python.png)
 
 An emulation of the board game [Chess](https://en.wikipedia.org/wiki/Chess) in the terminal using basic OOD concepts in Python 3.
 
